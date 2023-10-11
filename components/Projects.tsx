@@ -2,7 +2,8 @@
 import Image from 'next/image';
 import budgetTracker from '@/public/expense-tracker-app.png';
 import socialMedia from '@/public/socialmedia_app.png';
-import ecommerce from '@/public/e-commerce.png';
+import ecommerceAdmin from '@/public/ecommerce-admin.png';
+import ecommerceStore from '@/public/ecommerce-store.png';
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
@@ -23,13 +24,18 @@ export default function Projects() {
     threshold: 0.1,
   });
 
+  const [project4Ref, project4InView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
   const [animationStarted, setAnimationStarted] = useState(false);
 
   useEffect(() => {
-    if (project1InView || project2InView || project3InView) {
+    if (project1InView || project2InView || project3InView || project4InView) {
       setAnimationStarted(true);
     }
-  }, [project1InView, project2InView, project3InView]);
+  }, [project1InView, project2InView, project3InView, project4InView]);
 
   const projectVariants = {
     hidden: {
@@ -144,10 +150,10 @@ export default function Projects() {
             className='w-10/12 mx-auto min-h-64 max-h-72 overflow-hidden rounded-xl'
             ref={project3Ref}>
             <a
-              href='https://my-frist-e-commerce.vercel.app'
+              href='https://e-commerce-admin-phi-nine.vercel.app'
               target='_blank'>
               <Image
-                src={ecommerce}
+                src={ecommerceAdmin}
                 alt='E commerce'
                 placeholder='blur'
               />
@@ -161,23 +167,61 @@ export default function Projects() {
               variants={projectVariants}>
               Project 3
             </motion.h1>
-            <h2 className='text-xl pl-3 my-4'>E commerce</h2>
+            <h2 className='text-xl pl-3 my-4'>Ecommerce Dashboard</h2>
             <motion.p
               className='pl-3 text-lg font-light tracking-wider'
               initial='hidden'
               animate={project3InView ? 'visible' : 'hidden'}
               variants={projectVariants}>
-              In this example, I have utilized the latest update of Next.js, a
-              popular framework for building React applications. To enhance type
-              safety and catch potential errors, I have incorporated TypeScript,
-              a statically-typed superset of JavaScript. For the design and
-              styling, I have employed Tailwind CSS, a utility-first CSS
-              framework that provides a wide range of pre-built components and
-              styles. To efficiently manage data across the entire app, I have
-              implemented React Context, which allows for easy sharing and
-              access of data between components. This combination of
-              technologies ensures a robust and well-designed application with
-              enhanced type safety and seamless data management.
+              Introducing our cutting-edge E-commerce Dashboard App, your
+              ultimate store management solution. Seamlessly integrated with
+              Stripe, it keeps you in the loop with instant notifications of
+              successful user payments. But wait, there's more! Visualize your
+              annual revenue with an interactive graph. We've harnessed the
+              power of Next.js, MongoDB, Prisma, and NextUI for stunning UI
+              components. Plus, our authentication is in expert hands with
+              Clerk, ensuring a secure and seamless experience. Elevate your
+              E-commerce game today.
+            </motion.p>
+          </div>
+        </div>
+
+        <div className='grid grid-cols-1  sm:grid-cols-2 gap-5 p-5'>
+          <div
+            className='w-10/12 mx-auto min-h-64 max-h-72 overflow-hidden rounded-xl'
+            ref={project4Ref}>
+            <a
+              href='https://e-commerce-store-opal.vercel.app'
+              target='_blank'>
+              <Image
+                src={ecommerceStore}
+                alt='E commerce'
+                placeholder='blur'
+              />
+            </a>
+          </div>
+          <div>
+            <motion.h1
+              className='text-6xl font-thin text-blue-100'
+              initial='hidden'
+              animate={project4InView ? 'visible' : 'hidden'}
+              variants={projectVariants}>
+              Project 4
+            </motion.h1>
+            <h2 className='text-xl pl-3 my-4'>Ecommerce Store</h2>
+            <motion.p
+              className='pl-3 text-lg font-light tracking-wider'
+              initial='hidden'
+              animate={project4InView ? 'visible' : 'hidden'}
+              variants={projectVariants}>
+              Experience the perfect fusion of style and functionality with our
+              integrated E-commerce Dashboard. Our platform empowers you to
+              effortlessly deliver your products to eager users, while offering
+              the convenience of real-time payments through Stripe. Powered by
+              the dynamic duo of Next.js and Tailwind CSS for stunning
+              aesthetics and powered by Zustand for seamless state management,
+              we've crafted an exquisite app that's as beautiful as it is
+              powerful. Elevate your E-commerce journey with us!
             </motion.p>
           </div>
         </div>
